@@ -1,0 +1,83 @@
+body {
+	background-color: black;
+	margin: 0;
+	font-family: Arial, sans-serif; /* Add a nice font */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	flex-direction: column;
+	text-align: center;
+  }
+  
+  #heading {
+	position: fixed;
+	width: 100%;
+	padding: 32px;
+  }
+
+  
+  h1 {
+	color: rgb(255, 255, 255); /* Lighter white for title */
+	font-size: 3rem; /* Larger font for the title */
+	padding: 1rem;
+	font-weight: 400;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+  }
+  
+  p {
+	color: rgb(215, 215, 215);
+	font-size: 1.1rem;
+	margin: 5px 0;
+  }
+  
+  .border {
+	background: linear-gradient(90deg, gray, 90%, black);
+	height: 2px;
+	width: 80vw;
+	margin-top: 4px;
+  }
+  
+  /* Styling for the main content container */
+  .ui-container {
+	z-index: 1;
+	padding: 20px;
+	background: rgba(0, 0, 0, 0.6); /* Semi-transparent black background */
+	border-radius: 10px;
+	box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+  }
+  
+  button {
+	font-size: 1.5rem; /* Slightly bigger font for the button */
+	background-color: #007bff;
+	color: white;
+	border: none;
+	padding: 12px 25px;
+	border-radius: 8px;
+	cursor: pointer;
+	margin-top: 20px;
+	transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  button:hover {
+	background-color: #0056b3; /* Darker blue when hovered */
+	transform: scale(1.05); /* Slight scale effect */
+  }
+  
+  button:focus {
+	outline: none;
+  }
+  
+  canvas {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 0; /* Put the canvas behind the UI */
+  }
+  
+  

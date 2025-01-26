@@ -1,0 +1,11 @@
+Model Information:
+* title:	Space ship Diorama
+* source:	https://sketchfab.com/3d-models/space-ship-diorama-ed41057061744f57ac62548ae4ec6aa9
+* author:	SoftNote (https://sketchfab.com/softnote)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Space ship Diorama" (https://sketchfab.com/3d-models/space-ship-diorama-ed41057061744f57ac62548ae4ec6aa9) by SoftNote (https://sketchfab.com/softnote) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
