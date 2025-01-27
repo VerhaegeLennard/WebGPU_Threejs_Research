@@ -63,7 +63,7 @@ export function initializeLevel() {
   controls.enableDamping = true;
   controls.enablePan = false;
   controls.minDistance = 5;
-  controls.maxDistance = 40;
+  controls.maxDistance = 120;
   controls.minPolarAngle = 0.5;
   controls.maxPolarAngle = 1.5;
   controls.autoRotate = false;
@@ -88,13 +88,13 @@ export function initializeLevel() {
     scene.add(spaceship);
     console.log('Spaceship loaded successfully.');
 
-    // Add additional spaceships in the background
-    for (let i = 1; i <= 25; i++) {
+    // Add additional spaceships far in the background
+    for (let i = 1; i <= 5; i++) {
       const clone = spaceship.clone();
       clone.position.set(
-        spaceship.position.x + Math.random() * 100 - 50,
-        spaceship.position.y + Math.random() * 20 - 10,
-        spaceship.position.z + Math.random() * 100 - 50
+        spaceship.position.x + Math.random() * 2000 - 1000,
+        spaceship.position.y + Math.random() * 400 - 200,
+        spaceship.position.z + Math.random() * 2000 - 1000
       );
       scene.add(clone);
     }
@@ -283,6 +283,21 @@ export function initializeLevel() {
       renderer.setSize(window.innerWidth, window.innerHeight);
     });
 
+    // const rotatingCubes = [];
+    // const cubeGeometry = new THREE.BoxGeometry(3, 3, 3);
+    // const cubeMaterial = new THREE.MeshStandardMaterial({ color: 0x00ff00 });
+
+    // for (let i = 0; i < 1000; i++) {
+    //   const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+    //   cube.position.set(
+    //     Math.random() * 100 - 50,
+    //     Math.random() * 100 - 50,
+    //     Math.random() * 100 - 50
+    //   );
+    //   scene.add(cube);
+    //   rotatingCubes.push(cube);
+    // }
+
     function animate() {
       requestAnimationFrame(animate);
       const deltaTime = clock.getDelta();
@@ -290,6 +305,13 @@ export function initializeLevel() {
       stars.rotation.x += 0.0004;
       stars.rotation.y += 0.0004;
       controls.update();
+
+      // // Rotate the cubes
+      // rotatingCubes.forEach(cube => {
+      //   cube.rotation.x += 0.01;
+      //   cube.rotation.y += 0.01;
+      // });
+
       renderer.render(scene, camera);
       stats.update();
     }
