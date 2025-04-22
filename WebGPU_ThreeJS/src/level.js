@@ -76,28 +76,36 @@ export function initializeLevel() {
     spaceship.position.set(0, 0, 0);
     spaceship.scale.set(3, 3, 3);
     spaceship.rotation.y = Math.PI / 2;
+    spaceship.receiveShadow = true;
 
     // Center the spaceship
     const box = new THREE.Box3().setFromObject(spaceship);
     const center = box.getCenter(new THREE.Vector3());
     spaceship.position.sub(center);
-    spaceship.position.y += 2;
+    spaceship.position.y += 3;
     spaceship.position.x -= 6;
     spaceship.position.z -= 27;
+
+    // Make sure all parts of the spaceship can receive shadows
+    spaceship.traverse((child) => {
+      if (child.isMesh) {
+        child.receiveShadow = true;
+      }
+    });
 
     scene.add(spaceship);
     console.log('Spaceship loaded successfully.');
 
     // Add additional spaceships far in the background
-    for (let i = 1; i <= 5; i++) {
-      const clone = spaceship.clone();
-      clone.position.set(
-        spaceship.position.x + Math.random() * 2000 - 1000,
-        spaceship.position.y + Math.random() * 400 - 200,
-        spaceship.position.z + Math.random() * 2000 - 1000
-      );
-      scene.add(clone);
-    }
+    // for (let i = 1; i <= 5; i++) {
+    //   const clone = spaceship.clone();
+    //   clone.position.set(
+    //     spaceship.position.x + Math.random() * 2000 - 1000,
+    //     spaceship.position.y + Math.random() * 400 - 200,
+    //     spaceship.position.z + Math.random() * 2000 - 1000
+    //   );
+    //   scene.add(clone);
+    // }
   });
 
   //add the cube to the scene
@@ -122,6 +130,33 @@ export function initializeLevel() {
     cube.position.set(0, 0.6, 0);
     cube.scale.set(0.5, 0.5, 0.5);
     scene.add(cube);
+
+    const spotlight = new THREE.SpotLight(0xffffff, 30, 50, Math.PI / 2, 0.5, 1);
+    spotlight.position.set(0, 5, 5);
+    spotlight.castShadow = true;
+    scene.add(spotlight);
+    
+    // Configure shadow properties for better quality
+    spotlight.shadow.mapSize.width = 2048;
+    spotlight.shadow.mapSize.height = 2048;
+    spotlight.shadow.camera.near = 0.1;
+    spotlight.shadow.camera.far = 2000;
+    spotlight.shadow.bias = 0;
+
+    scene.add(spotlight);
+
+    // // Update spotlight position in the animation loop
+    // function updateSpotlight() {
+    //   spotlight.position.x = cube.position.x;
+    //   spotlight.position.z = cube.position.z;
+    // }
+
+    // Add the updateSpotlight function to the animation loop
+    const animateOriginal = animate;
+    animate = function () {
+      // updateSpotlight();
+      animateOriginal();
+    };
 
     //the mapgrid is a list of positions where the boxes will be placed
     const mapgrid = [
@@ -272,6 +307,12 @@ export function initializeLevel() {
           gltf.animations.forEach((clip) => {
             mixer.clipAction(clip).play();
           });
+          //wait for 5 secs before resetting the level
+          setTimeout(() => {
+            resetLevel();
+            // Stop the animation
+            mixer.stopAllAction();
+          }, 6000);
         }
       }
     });
